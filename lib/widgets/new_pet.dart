@@ -12,6 +12,7 @@ class NewPet extends StatefulWidget {
 
 class _NewPetState extends State<NewPet> {
   final _dogNameController = TextEditingController();
+  final _dogsObservationsController = TextEditingController();
 
   static var dropdownValue = '100';
   var integerAmount = int.parse(dropdownValue);
@@ -20,11 +21,13 @@ class _NewPetState extends State<NewPet> {
   DateTime _selectedDepartureDate;
 
   void _submitData() {
-    if (_dogNameController.text.isEmpty) {
+    if (_dogNameController.text.isEmpty || _dogsObservationsController.text.isEmpty) {
       return;
     }
 
     final enteredName = _dogNameController.text;
+    final enteredObservations = _dogsObservationsController.text;
+
     var amount = integerAmount;
 
     if (enteredName.isEmpty ||
@@ -38,6 +41,7 @@ class _NewPetState extends State<NewPet> {
       amount,
       _selectedArrivalDate,
       _selectedDepartureDate,
+      enteredObservations,
     );
 
     Navigator.of(context).pop();
@@ -159,6 +163,11 @@ class _NewPetState extends State<NewPet> {
                   ),
                 ],
               ),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Other Observations'),
+              controller: _dogsObservationsController,
+              onSubmitted: (_) => _submitData(),
             ),
             Center(
               child: RaisedButton(

@@ -6,7 +6,7 @@ class Dog {
   final int amount;
   final DateTime arrivalDate;
   final DateTime departureDate;
-  //final String observations;
+  final String observations;
 
   Dog({
     @required this.id,
@@ -14,6 +14,6 @@ class Dog {
     @required this.amount,
     @required this.arrivalDate,
     @required this.departureDate,
-    //@required this.observations,
+    @required this.observations,
   });
 }

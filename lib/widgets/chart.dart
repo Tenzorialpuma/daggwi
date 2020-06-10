@@ -20,6 +20,7 @@ class Chart extends StatelessWidget {
             recentDogsProfit[i].arrivalDate.month == weekDay.month &&
             recentDogsProfit[i].arrivalDate.year == weekDay.year) {
           totalSum += recentDogsProfit[i].amount;
+          //it should work now
         }
       }
       return {

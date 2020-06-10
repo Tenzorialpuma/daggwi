@@ -46,15 +46,15 @@ class _MyHomePageState extends State<MyHomePage> {
     String dogName,
     int dogAmount,
     DateTime firstChosenDate,
-    DateTime secondChosenDate, 
-    //String observations //TODO
+    DateTime secondChosenDate,
+    String observations,
   ) {
     final newDog = Dog(
       title: dogName,
       amount: dogAmount,
-      //observations: observations, //TODO
+      observations: observations,
       arrivalDate: firstChosenDate,
-      departureDate: secondChosenDate, 
+      departureDate: secondChosenDate,
       id: DateTime.now().toString(),
     );
 
