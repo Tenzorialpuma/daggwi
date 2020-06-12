@@ -1,6 +1,8 @@
+import 'package:dawggi/pet_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/Dog.dart';
+import 'package:dawggi/pet_profile.dart';
 
 class Doglist extends StatelessWidget {
   final List<Dog> dogs;
@@ -32,12 +34,14 @@ class Doglist extends StatelessWidget {
                 ),
                 child: ListTile(
                   onTap: () {
-                    print('Card tapped.');
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => PetsDetails(this.dogs[index]),
+                    ));
                   },
                   leading: CircleAvatar(
                     radius: 30,
                     child: Padding(
-                      padding: EdgeInsets.all(6),
+                      padding: EdgeInsets.all(10),
                       child: FittedBox(
                         child: Text('\$${dogs[index].amount}'),
                       ),
