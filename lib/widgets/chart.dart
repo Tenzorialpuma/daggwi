@@ -1,3 +1,4 @@
+import 'package:dawggi/assets/mainColors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/Dog.dart';
@@ -46,7 +47,7 @@ class Chart extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: groupedDogData.map((data) {
-              return Flexible(child: Container(color: Colors.amberAccent,));
+              return Flexible(child: Container(color: MainColors.mainBlue,));
             }).toList(),
           ),
         ));

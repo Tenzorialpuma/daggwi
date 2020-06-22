@@ -81,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _listOfDogs.removeWhere((dog) => dog.id == id);
     });
   }
+  
 
   @override
   Widget build(BuildContext context) {

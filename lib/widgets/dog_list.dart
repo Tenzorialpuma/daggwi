@@ -2,7 +2,6 @@ import 'package:dawggi/pet_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/Dog.dart';
-import 'package:dawggi/pet_profile.dart';
 
 class Doglist extends StatelessWidget {
   final List<Dog> dogs;
