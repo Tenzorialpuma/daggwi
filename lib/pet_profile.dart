@@ -12,6 +12,11 @@ class PetsDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var daysStaying = int.parse(
+        dog.departureDate.difference(dog.arrivalDate).inDays.toString());
+    var amount = dog.amount.toInt();
+    var totalCharges = daysStaying * amount;
+
     final appBar = AppBar(
       centerTitle: false,
       title: Text(
@@ -121,12 +126,94 @@ class PetsDetails extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateFormat.yMMMEd().format(dog.departureDate).toString(),
+                        DateFormat.yMMMEd()
+                            .format(dog.departureDate)
+                            .toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
                         ),
                       )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          'Total Days Staying',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "${dog.departureDate.difference(dog.arrivalDate).inDays.toString()} - ${dog.departureDate.difference(dog.arrivalDate).inDays + 1}",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          'Total Charges',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "\$$totalCharges - \$${totalCharges + dog.amount}",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(3.0, 8.0, 8.0, 1.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          'Observations:',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 8.0),
+                  child: Row(
+                    children: <Widget>[
+                      RichText(
+                        text: TextSpan(
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            ),
+                            children: [
+                              TextSpan(text: "ehejej"),
+                              TextSpan(text: "ncidnicndnenlcnlejnlnlenednclnn"),
+                            ]),
+                      ),
                     ],
                   ),
                 ),
