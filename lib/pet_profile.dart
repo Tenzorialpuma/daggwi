@@ -1,5 +1,7 @@
 import 'package:dawggi/assets/mainColors.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import 'package:dawggi/models/Dog.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -50,22 +52,90 @@ class PetsDetails extends StatelessWidget {
           Container(
             height: 10,
           ),
-          Center(
-            child: Container(
-                padding: EdgeInsets.all(15),
-                width: MediaQuery.of(context).size.width * 0.90,
-                height: (MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height -
-                        MediaQuery.of(context).padding.top) *
-                    .68,
-                child: Text(
-                  "The Selected Amount Is: " + dog.amount.toString(),
-                  style: TextStyle(fontSize: 21.0, color: Colors.white),
+          Container(
+            padding: EdgeInsets.all(10),
+            width: MediaQuery.of(context).size.width * 0.90,
+            height: (MediaQuery.of(context).size.height -
+                    appBar.preferredSize.height -
+                    MediaQuery.of(context).padding.top) *
+                .68,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          'Per Day',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        dog.amount.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                decoration: BoxDecoration(
-                  color: MainColors.mainBlue,
-                  borderRadius: BorderRadius.circular(10),
-                )),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          'First Day',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        DateFormat.yMMMEd().format(dog.arrivalDate).toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          'Last Day',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        DateFormat.yMMMEd().format(dog.departureDate).toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         ],
       ),
