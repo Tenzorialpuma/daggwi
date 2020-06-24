@@ -2,6 +2,7 @@ import 'package:dawggi/assets/mainColors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/Dog.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Chart extends StatelessWidget {
   final List<Dog> recentDogsProfit;
@@ -9,7 +10,7 @@ class Chart extends StatelessWidget {
   Chart(this.recentDogsProfit);
 
   List<Map<String, Object>> get groupedDogData {
-    return List.generate(7, (index) {
+    return List.generate(1, (index) {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
       );
@@ -40,16 +41,23 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 6,
+        color: MainColors.mainPurple,
+        elevation: 15,
         margin: EdgeInsets.all(20),
         child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: groupedDogData.map((data) {
-              return Flexible(child: Container(color: MainColors.mainBlue,));
-            }).toList(),
-          ),
-        ));
+            padding: EdgeInsets.all(10),
+            child: Container(
+              child: Row(
+                children: [
+                  Text(
+                    'Today\'s Profit: $totalProfit',
+                    style: GoogleFonts.openSans(
+                      color: Colors.white,
+                      fontSize: 24.0, 
+                    ),
+                  )
+                ],
+              ),
+            )));
   }
 }

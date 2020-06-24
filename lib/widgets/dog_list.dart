@@ -7,6 +7,8 @@ class Doglist extends StatelessWidget {
   final List<Dog> dogs;
   final Function deleteDog;
 
+  Dog dog;
+
   Doglist(this.dogs, this.deleteDog);
 
   @override
@@ -33,9 +35,11 @@ class Doglist extends StatelessWidget {
                 ),
                 child: ListTile(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => PetsDetails(this.dogs[index]),
-                    ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PetsDetails(this.dogs[index]),
+                        ));
                   },
                   leading: CircleAvatar(
                     radius: 30,

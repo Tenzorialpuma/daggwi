@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class NewPet extends StatefulWidget {
   final Function addPet;
@@ -14,35 +17,45 @@ class _NewPetState extends State<NewPet> {
   final _dogNameController = TextEditingController();
   final _dogsObservationsController = TextEditingController();
 
+  File _imageFile;
+
   static var dropdownValue = '100';
   var integerAmount = int.parse(dropdownValue);
 
   DateTime _selectedArrivalDate;
   DateTime _selectedDepartureDate;
 
+  Future<void> _pickImage(ImageSource source) async {
+    print("photo icon pressed");
+    File selected = await ImagePicker.pickImage(source: source);
+
+    setState(() {
+      _imageFile = selected;
+      print('working?');
+    });
+  }
+
   void _submitData() {
-    if (_dogNameController.text.isEmpty || _dogsObservationsController.text.isEmpty) {
+    if (_dogNameController.text.isEmpty ||
+        _dogsObservationsController.text.isEmpty) {
       return;
     }
 
     final enteredName = _dogNameController.text;
     final enteredObservations = _dogsObservationsController.text;
 
+    File dogPhoto = _imageFile;
     var amount = integerAmount;
 
     if (enteredName.isEmpty ||
         _selectedArrivalDate == null ||
-        _selectedDepartureDate == null) {
+        _selectedDepartureDate == null ||
+        dogPhoto == null) {
       return;
     }
 
-    widget.addPet(
-      enteredName,
-      amount,
-      _selectedArrivalDate,
-      _selectedDepartureDate,
-      enteredObservations,
-    );
+    widget.addPet(enteredName, amount, _selectedArrivalDate,
+        _selectedDepartureDate, enteredObservations, dogPhoto);
 
     Navigator.of(context).pop();
   }
@@ -165,19 +178,41 @@ class _NewPetState extends State<NewPet> {
               ),
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Other Observations'),
+              decoration: InputDecoration(labelText: 'Observations'),
               controller: _dogsObservationsController,
               onSubmitted: (_) => _submitData(),
             ),
-            Center(
-              child: RaisedButton(
-                child: Text(
-                  'Add',
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Theme.of(context).primaryColor,
-                textColor: Theme.of(context).textTheme.button.color,
-                onPressed: _submitData,
+            Container(
+              height: 10.0,
+            ),
+            Container(
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.camera_alt),
+                    onPressed: () => _pickImage(ImageSource.camera),
+                    color: Theme.of(context).primaryColor,
+                    iconSize: 45.0,
+                  ),
+                  Text(
+                    _imageFile == null
+                        ? '<-- Take A Photo'
+                        : 'Photo Taken Sucesfully!',
+                    style: GoogleFonts.openSans(fontSize: 14),
+                  ),
+                  Expanded(child: Container()),
+                  RaisedButton(
+                    child: Text(
+                      'Add Dog',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    color: Theme.of(context).primaryColor,
+                    textColor: Theme.of(context).textTheme.button.color,
+                    onPressed: _submitData,
+                  ),
+                ],
               ),
             ),
           ],

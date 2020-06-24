@@ -1,4 +1,3 @@
-import 'package:dawggi/assets/mainColors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -18,33 +17,36 @@ class PetsDetails extends StatelessWidget {
     var totalCharges = daysStaying * amount;
 
     final appBar = AppBar(
-      centerTitle: false,
       title: Text(
         dog.title,
-        style: GoogleFonts.pacifico(),
+        style: GoogleFonts.openSans(),
       ),
     );
     return Scaffold(
       appBar: AppBar(
           title: Text(
         dog.title,
-        style: GoogleFonts.pacifico(),
+        style: GoogleFonts.openSans(),
       )),
       body: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width * 1.00,
-            height: (MediaQuery.of(context).size.height -
-                    appBar.preferredSize.height -
-                    MediaQuery.of(context).padding.top) *
-                .24,
+            child: Image.file(
+              dog.dogsPhoto,
+              width: MediaQuery.of(context).size.width * 1.00,
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  .30,
+              fit: BoxFit.cover,
+            ),
             decoration: BoxDecoration(
-                color: MainColors.mainBlue,
                 borderRadius: new BorderRadius.only(
-                  bottomLeft: Radius.circular(20.0),
-                  bottomRight: Radius.circular(20.0),
-                )),
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
+            )),
           ),
+          
           Container(
             height: 10,
           ),
@@ -57,171 +59,168 @@ class PetsDetails extends StatelessWidget {
           Container(
             height: 10,
           ),
-          Container(
-            padding: EdgeInsets.all(10),
-            width: MediaQuery.of(context).size.width * 0.90,
-            height: (MediaQuery.of(context).size.height -
-                    appBar.preferredSize.height -
-                    MediaQuery.of(context).padding.top) *
-                .68,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'Per Day',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        dog.amount.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'First Day',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        DateFormat.yMMMEd().format(dog.arrivalDate).toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'Last Day',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        DateFormat.yMMMEd()
-                            .format(dog.departureDate)
-                            .toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'Total Days Staying',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "${dog.departureDate.difference(dog.arrivalDate).inDays.toString()} - ${dog.departureDate.difference(dog.arrivalDate).inDays + 1}",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'Total Charges',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "\$$totalCharges - \$${totalCharges + dog.amount}",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(3.0, 8.0, 8.0, 1.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'Observations:',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 8.0),
-                  child: Row(
-                    children: <Widget>[
-                      RichText(
-                        text: TextSpan(
+          Card(
+            elevation: 15,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              width: MediaQuery.of(context).size.width * 0.90,
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  .62,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'Per Day',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18.0,
                             ),
-                            children: [
-                              TextSpan(text: "ehejej"),
-                              TextSpan(text: "ncidnicndnenlcnlejnlnlenednclnn"),
-                            ]),
-                      ),
-                    ],
+                          ),
+                        ),
+                        Text(
+                          dog.amount.toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(10),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'First Day',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          DateFormat.yMMMEd()
+                              .format(dog.arrivalDate)
+                              .toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'Last Day',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          DateFormat.yMMMEd()
+                              .format(dog.departureDate)
+                              .toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'Total Days Staying',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "${dog.departureDate.difference(dog.arrivalDate).inDays.toString()} - ${dog.departureDate.difference(dog.arrivalDate).inDays + 1}",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'Total Charges',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "\$$totalCharges - \$${totalCharges + dog.amount}",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 1.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'Observations:',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 8.0),
+                      child: Text(
+                        dog.observations,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                        ),
+                      )),
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
           ),
         ],

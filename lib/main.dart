@@ -2,7 +2,9 @@ import 'package:dawggi/widgets/dog_list.dart';
 import 'package:dawggi/widgets/new_pet.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:io';
 
+import './widgets/new_pet.dart';
 import './assets/mainColors.dart';
 import './models/Dog.dart';
 import './widgets/chart.dart';
@@ -48,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     DateTime firstChosenDate,
     DateTime secondChosenDate,
     String observations,
+    File dogPhoto,
   ) {
     final newDog = Dog(
       title: dogName,
@@ -55,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       observations: observations,
       arrivalDate: firstChosenDate,
       departureDate: secondChosenDate,
+      dogsPhoto: dogPhoto,
       id: DateTime.now().toString(),
     );
 

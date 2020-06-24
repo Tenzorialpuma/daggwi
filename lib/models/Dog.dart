@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'dart:io';
 
 class Dog {
   final String id;
@@ -7,6 +8,7 @@ class Dog {
   final DateTime arrivalDate;
   final DateTime departureDate;
   final String observations;
+  final File dogsPhoto;
 
   Dog({
     @required this.id,
@@ -15,5 +17,6 @@ class Dog {
     @required this.arrivalDate,
     @required this.departureDate,
     @required this.observations,
+    @required this.dogsPhoto
   });
 }
