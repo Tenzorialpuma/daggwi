@@ -4,16 +4,16 @@ import 'package:intl/intl.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-class NewPet extends StatefulWidget {
+class NewDog extends StatefulWidget {
   final Function addPet;
 
-  NewPet(this.addPet);
+  NewDog(this.addPet);
 
   @override
-  _NewPetState createState() => _NewPetState();
+  _NewDogState createState() => _NewDogState();
 }
 
-class _NewPetState extends State<NewPet> {
+class _NewDogState extends State<NewDog> {
   final _dogNameController = TextEditingController();
   final _dogsObservationsController = TextEditingController();
 
@@ -31,7 +31,6 @@ class _NewPetState extends State<NewPet> {
 
     setState(() {
       _imageFile = selected;
-      print('working?');
     });
   }
 
@@ -138,13 +137,15 @@ class _NewPetState extends State<NewPet> {
                     child: Text(
                       _selectedArrivalDate == null
                           ? 'No Date Chosen'
-                          : 'Picked Date: ${DateFormat.yMd().format(_selectedArrivalDate)}',
+                          : 'Arrival Date: ${DateFormat.yMd().format(_selectedArrivalDate)}',
                     ),
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
                     child: Text(
-                      'Choose Arrival Date',
+                      _selectedArrivalDate == null
+                          ? 'Choose Arrival Date'
+                          : 'Choose Another Date',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -161,13 +162,15 @@ class _NewPetState extends State<NewPet> {
                     child: Text(
                       _selectedDepartureDate == null
                           ? 'No Date Chosen'
-                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDepartureDate)}',
+                          : 'Departure Date: ${DateFormat.yMd().format(_selectedDepartureDate)}',
                     ),
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
                     child: Text(
-                      'Choose Departure Date',
+                      _selectedArrivalDate == null
+                          ? 'Choose Arrival Date'
+                          : 'Choose Another Date',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),

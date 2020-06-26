@@ -9,6 +9,7 @@ class Doglist extends StatelessWidget {
 
   Dog dog;
 
+
   Doglist(this.dogs, this.deleteDog);
 
   @override
@@ -28,7 +29,7 @@ class Doglist extends StatelessWidget {
         : ListView.builder(
             itemBuilder: (ctx, index) {
               return Card(
-                elevation: 5,
+                elevation: 15,
                 margin: EdgeInsets.symmetric(
                   vertical: 8,
                   horizontal: 5,
@@ -38,7 +39,7 @@ class Doglist extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PetsDetails(this.dogs[index]),
+                          builder: (context) => PetsDetails(this.dogs[index] ),
                         ));
                   },
                   leading: CircleAvatar(

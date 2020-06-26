@@ -1,10 +1,9 @@
 import 'package:dawggi/widgets/dog_list.dart';
-import 'package:dawggi/widgets/new_pet.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io';
 
-import './widgets/new_pet.dart';
+import './widgets/new_dog.dart';
 import './assets/mainColors.dart';
 import './models/Dog.dart';
 import './widgets/chart.dart';
@@ -38,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return _listOfDogs.where((dogName) {
       return dogName.arrivalDate.isAfter(
         DateTime.now().subtract(
-          Duration(days: 7),
+          Duration(days: 365),
         ),
       );
     }).toList();
@@ -73,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (_) {
         return GestureDetector(
           onTap: () {},
-          child: NewPet(_addNewDog),
+          child: NewDog(_addNewDog),
           behavior: HitTestBehavior.opaque,
         );
       },
@@ -85,11 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
       _listOfDogs.removeWhere((dog) => dog.id == id);
     });
   }
-  
 
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
+      elevation: 15,
       centerTitle: true,
       title: Text(
         'Dawggi',
@@ -132,6 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
+        elevation: 15,
         onPressed: () => _startAddNewDog(context),
       ),
     );

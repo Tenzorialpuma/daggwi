@@ -24,13 +24,18 @@ class PetsDetails extends StatelessWidget {
     );
     return Scaffold(
       appBar: AppBar(
+          elevation: 15,
           title: Text(
-        dog.title,
-        style: GoogleFonts.openSans(),
-      )),
+            dog.title,
+            style: GoogleFonts.openSans(),
+          )),
       body: Column(
         children: [
-          Container(
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(35),
+              bottomLeft: Radius.circular(35),
+            ),
             child: Image.file(
               dog.dogsPhoto,
               width: MediaQuery.of(context).size.width * 1.00,
@@ -40,13 +45,7 @@ class PetsDetails extends StatelessWidget {
                   .30,
               fit: BoxFit.cover,
             ),
-            decoration: BoxDecoration(
-                borderRadius: new BorderRadius.only(
-              bottomLeft: Radius.circular(20.0),
-              bottomRight: Radius.circular(20.0),
-            )),
           ),
-          
           Container(
             height: 10,
           ),
@@ -157,7 +156,7 @@ class PetsDetails extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "${dog.departureDate.difference(dog.arrivalDate).inDays.toString()} - ${dog.departureDate.difference(dog.arrivalDate).inDays + 1}",
+                          "${dog.departureDate.difference(dog.arrivalDate).inDays + 1}",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.0,
@@ -180,7 +179,7 @@ class PetsDetails extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "\$$totalCharges - \$${totalCharges + dog.amount}",
+                          "\$${totalCharges + dog.amount}",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.0,
@@ -219,8 +218,11 @@ class PetsDetails extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(25.0),
               ),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
             ),
           ),
         ],
@@ -228,3 +230,4 @@ class PetsDetails extends StatelessWidget {
     );
   }
 }
+//TODO Ask MOM aout prices days and stuff
